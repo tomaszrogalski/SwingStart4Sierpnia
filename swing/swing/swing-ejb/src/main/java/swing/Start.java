@@ -1,11 +1,20 @@
 package swing;
 
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.TextField;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 
 public class Start extends JFrame {
 
 	public static void main(String[] args) {
 		new ListaKlientow("ListaKlientow");
+		new ListaFaktur("ListaFaktur");
+		new DodajKlienta("DodajKlienta");
+		new DodanieFaktury("DodanieFaktury");
 	}
 
 	public Start() {
@@ -14,5 +23,33 @@ public class Start extends JFrame {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+
+	}
+
+	public JPanel tabela2na3(String col1, String col2, String col3) {
+
+		JPanel panel = new JPanel();
+
+		panel.setLayout(new GridLayout(2, 3));
+
+		TextField tnazwa = new TextField();
+		TextField tnip = new TextField();
+		TextField tadres = new TextField();
+
+		Label lnazwa = new Label();
+		Label lnip = new Label();
+		Label ladres = new Label();
+
+		lnazwa.setText(col1);
+		lnip.setText(col2);
+		ladres.setText(col3);
+
+		panel.add(lnazwa);
+		panel.add(lnip);
+		panel.add(ladres);
+		panel.add(tnazwa);
+		panel.add(tnip);
+		panel.add(tadres);
+		return panel;
 	}
 }
