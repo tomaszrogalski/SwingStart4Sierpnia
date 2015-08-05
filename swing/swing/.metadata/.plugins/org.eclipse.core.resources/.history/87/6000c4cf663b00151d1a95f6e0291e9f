@@ -15,7 +15,7 @@ public class DodajKlienta extends Start {
 	class Lewo extends JPanel {
 
 		Lewo() {
-			setLayout(new GridLayout(8, 1));
+			setLayout(new GridLayout(9, 1));
 
 			Label labelNip = new Label();
 			Label labelKod = new Label();
@@ -24,6 +24,7 @@ public class DodajKlienta extends Start {
 			Label labelUlica = new Label();
 			Label labelImie = new Label();
 			Label labelNazwisko = new Label();
+			Label pusty = new Label();
 
 			labelNip.setText("Nip");
 			labelKod.setText("Kod");
@@ -40,13 +41,14 @@ public class DodajKlienta extends Start {
 			add(labelMiejscowosc);
 			add(labelNrDomu);
 			add(labelUlica);
+			add(pusty);
+
 		}
 	}
-
 	class Prawo extends JPanel {
 
 		Prawo() {
-			setLayout(new GridLayout(8, 1));
+			setLayout(new GridLayout(9, 1));
 
 			TextField textNip = new TextField();
 			TextField textKod = new TextField();
@@ -87,7 +89,6 @@ public class DodajKlienta extends Start {
 				}
 			});
 		}
-	}
 
 	public DodajKlienta(String title) {
 		setTitle(title);

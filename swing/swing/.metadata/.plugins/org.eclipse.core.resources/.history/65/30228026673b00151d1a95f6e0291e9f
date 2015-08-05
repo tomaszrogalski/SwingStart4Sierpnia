@@ -15,7 +15,7 @@ public class DodajKlienta extends Start {
 	class Lewo extends JPanel {
 
 		Lewo() {
-			setLayout(new GridLayout(8, 1));
+			setLayout(new GridLayout(7, 1));
 
 			Label labelNip = new Label();
 			Label labelKod = new Label();
@@ -40,6 +40,7 @@ public class DodajKlienta extends Start {
 			add(labelMiejscowosc);
 			add(labelNrDomu);
 			add(labelUlica);
+
 		}
 	}
 

@@ -1,0 +1,93 @@
+package swing;
+
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class DodajKlienta extends Start {
+
+	class Labele extends JPanel {
+
+		Labele() {
+			setLayout(new GridLayout(8, 1));
+
+			Label labelNip = new Label();
+			Label labelKod = new Label();
+			Label labelMiejscowosc = new Label();
+			Label labelNrDomu = new Label();
+			Label labelUlica = new Label();
+			Label labelImie = new Label();
+			Label labelNazwisko = new Label();
+
+			labelNip.setText("Nip");
+			labelKod.setText("Kod");
+			labelMiejscowosc.setText("Miejscowosc");
+			labelNrDomu.setText("NrDomu");
+			labelUlica.setText("Ulica");
+			labelImie.setText("Imie");
+			labelNazwisko.setText("Nazwisko");
+		}
+
+	}
+
+	public DodajKlienta(String title) {
+		setTitle(title);
+
+		setLayout(new GridLayout(8, 2));
+
+		TextField textNip = new TextField();
+		TextField textKod = new TextField();
+		TextField textMiejscowosc = new TextField();
+		TextField textNrDomu = new TextField();
+		TextField textUlica = new TextField();
+		TextField textImie = new TextField();
+		TextField textNazwisko = new TextField();
+
+		add(labelNip);
+		add(textNip);
+		add(labelImie);
+		add(textImie);
+		add(labelNazwisko);
+		add(textNazwisko);
+		add(labelKod);
+		add(textKod);
+		add(labelMiejscowosc);
+		add(textMiejscowosc);
+		add(labelNrDomu);
+		add(textNrDomu);
+		add(labelUlica);
+		add(textUlica);
+
+		Label pusty = new Label();
+		JButton dodaj = new JButton();
+		dodaj.setText("Dodaj");
+
+		dodaj.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				String sql = new String();
+
+				sql = "INSERT INTO swing.Klient(nip,kod_pocztowy,miejscowosc,nr_domu,ulica,imie,nazwisko)" + "VALUES('"
+						+ textNip.getText() + "','" + textKod.getText() + "','" + textMiejscowosc.getText() + "','"
+						+ textNrDomu.getText() + "','" + textUlica.getText() + "','" + textImie.getText() + "','"
+						+ textNazwisko.getText() + "');";
+				try {
+					polaczenieDodajJDBC(sql);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		add(pusty);
+		add(dodaj);
+	}
+}

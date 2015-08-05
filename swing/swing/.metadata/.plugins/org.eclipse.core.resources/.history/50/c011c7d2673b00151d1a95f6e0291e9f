@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 public class ListaKlientow extends Start {
 
 	class Tabela extends JPanel {
-		
 		Tabela() throws SQLException {
 			String sql = new String();
 
@@ -31,7 +30,6 @@ public class ListaKlientow extends Start {
 	}
 
 	class Dol extends JPanel {
-		
 		Dol() {
 			setLayout(new FlowLayout());
 
@@ -65,7 +63,7 @@ public class ListaKlientow extends Start {
 
 		this.pack();
 
-		this.add(new Dol(), BorderLayout.SOUTH);
+		this.add(panelDol, BorderLayout.SOUTH);
 
 	}
 

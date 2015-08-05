@@ -24,6 +24,7 @@ public class DodajKlienta extends Start {
 			Label labelUlica = new Label();
 			Label labelImie = new Label();
 			Label labelNazwisko = new Label();
+			Label pusty = new Label();
 
 			labelNip.setText("Nip");
 			labelKod.setText("Kod");
@@ -40,6 +41,8 @@ public class DodajKlienta extends Start {
 			add(labelMiejscowosc);
 			add(labelNrDomu);
 			add(labelUlica);
+			add(pusty);
+
 		}
 	}
 
