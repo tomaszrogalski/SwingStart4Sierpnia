@@ -1,0 +1,73 @@
+package modelq;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import model.Pozycja;
+
+@Entity
+@Table(name = "produkt", schema = "schemat21lipiec")
+public class Produkt {
+
+	@Id
+	@SequenceGenerator(name = "produkt_id_seq", sequenceName = "schemat21lipiec.produkt_id_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "produkt_id_seq")
+	@Column(name = "produkt_id")
+	private Long Id;
+
+	@OneToOne
+	@JoinColumn(name = "vat_id")
+	private Vat vat;
+
+	@Enumerated(EnumType.STRING)
+	private GrupaCenowa grupa_cenowa;
+
+	@OneToOne
+	@JoinColumn(name = "pozycja_id")
+	private Pozycja pozycja;
+
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
+	public Vat getVat() {
+		return vat;
+	}
+
+	public void setVat(Vat vat) {
+		this.vat = vat;
+	}
+
+	public GrupaCenowa getGrupa_cenowa() {
+		return grupa_cenowa;
+	}
+
+	public void setGrupa_cenowa(GrupaCenowa grupa_cenowa) {
+		this.grupa_cenowa = grupa_cenowa;
+	}
+
+	public Pozycja getPozycja() {
+		return pozycja;
+	}
+
+	public void setPozycja(Pozycja pozycja) {
+		this.pozycja = pozycja;
+	}
+
+	
+	
+}

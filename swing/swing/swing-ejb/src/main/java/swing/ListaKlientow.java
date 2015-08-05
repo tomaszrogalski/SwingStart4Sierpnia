@@ -1,28 +1,59 @@
 package swing;
 
-import java.awt.GridLayout;
-import java.awt.Label;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ListaKlientow extends Start {
-	//listafaktur powinna dziedziczyc po liscie?
-	//zrobic klase a listaFaktur i listaKlientow i dodac dziedzicza po niej?
 
-	public ListaKlientow(String title) {
+	public ListaKlientow(String title) throws SQLException {
 		setTitle(title);
-		
-		String[] kolumny = new String[] { "NAZWA", "NIP", "ADRES" };
+		setLayout(new BorderLayout());
 
-		String[][] wartosci = new String[][] { { "jakasNAZWA", "jakisNIP", "jakisADRES" }, };
+		String sql = new String();
 
-		JTable table = new JTable(wartosci, kolumny);
+		sql = "Select * from swing.klient";
 
-		this.add(new JScrollPane(table));
+		DefaultTableModel model = polaczenieOdbierzJDBC(sql);
+
+		JTable table = new JTable(model);
+		this.add(new JScrollPane(table), BorderLayout.CENTER);
 
 		this.pack();
-		//klawisz cofnij
+
+		JPanel panelDol = new JPanel();
+		panelDol.setLayout(new FlowLayout());
+
+		TextField textId = new TextField();
+		textId.setText("ID");
+		textId.setPreferredSize(new Dimension(220, 30));
+
+		JButton wybierz = new JButton();
+		wybierz.setText("Wybierz klienta");
+		wybierz.setPreferredSize(new Dimension(220, 30));
+		wybierz.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		panelDol.add(textId);
+		panelDol.add(wybierz);
+
+		this.add(panelDol, BorderLayout.SOUTH);
+
 	}
+	
 }

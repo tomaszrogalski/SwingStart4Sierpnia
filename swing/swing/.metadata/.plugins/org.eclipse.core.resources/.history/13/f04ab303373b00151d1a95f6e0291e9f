@@ -1,0 +1,20 @@
+package model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "faktura", schema = "swing")
+public class Faktura {
+	
+	@Id
+	@SequenceGenerator(name = "faktura_id_seq", sequenceName = "swing.faktura_id_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "faktura_id_seq")
+	@Column(name = "faktura_id")
+	private Long id;
+}

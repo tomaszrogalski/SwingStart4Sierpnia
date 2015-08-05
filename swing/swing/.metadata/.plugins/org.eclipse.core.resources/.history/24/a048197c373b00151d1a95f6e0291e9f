@@ -1,0 +1,56 @@
+package modelq;
+
+import java.util.List;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import model.Pozycja;
+
+@Entity
+//@Table(name = "faktura", schema = "schemat21lipiec")
+@DiscriminatorValue(value = "faktura")
+public class Faktura extends Dokument{
+
+//	@Id
+//	@SequenceGenerator(name = "faktura_id_seq", sequenceName = "schemat21lipiec.faktura_id_seq")
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "faktura_id_seq")
+//	@Column(name = "faktura_id")
+//	private Long Id;
+
+	@ManyToOne
+	@JoinColumn(name = "klient_id")
+	private Klient klient;
+
+	@OneToMany(mappedBy="faktura")
+	private List<Pozycja> lista_pozycji;
+
+//	public Long getId() {
+//		return Id;
+//	}
+//
+//	public void setId(Long id) {
+//		Id = id;
+//	}
+
+	public Klient getKlient() {
+		return klient;
+	}
+
+	public void setKlient(Klient klient) {
+		this.klient = klient;
+	}
+
+	public List<Pozycja> getLista_pozycji() {
+		return lista_pozycji;
+	}
+
+	public void setLista_pozycji(List<Pozycja> lista_pozycji) {
+		this.lista_pozycji = lista_pozycji;
+	}
+
+	
+}

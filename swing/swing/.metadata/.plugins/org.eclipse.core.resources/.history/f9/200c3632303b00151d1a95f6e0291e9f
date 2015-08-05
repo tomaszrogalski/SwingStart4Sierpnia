@@ -1,0 +1,33 @@
+package swing;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class TestGBL extends JFrame {
+
+	public TestGBL(String title) {
+		setTitle(title);
+		
+		setSize(600, 300);
+		setLocation(400, 100);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+
+
+		this.setLayout(new GridBagLayout());
+
+		GridBagConstraints worker = new GridBagConstraints();
+
+		worker.insets = new Insets(10, 10, 10, 10);
+		// Odleglosci pomiedzy komorkami
+
+		worker.anchor = GridBagConstraints.NORTHWEST;
+
+		this.add(new JButton("Klawisz nr 1"), worker);
+	}
+}

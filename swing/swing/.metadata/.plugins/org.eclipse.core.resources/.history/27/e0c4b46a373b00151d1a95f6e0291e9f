@@ -1,0 +1,6 @@
+package modelq;
+
+public enum GrupaCenowa {
+	A(), B(), C();
+
+}

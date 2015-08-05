@@ -1,0 +1,22 @@
+package model;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "wz")
+public class WZ extends Dokument {
+
+	@Column(name="nazwa")
+	private String nazwa;
+
+	public String getNazwa() {
+		return nazwa;
+	}
+
+	public void setNazwa(String nazwa) {
+		this.nazwa = nazwa;
+	}
+
+}

@@ -1,0 +1,31 @@
+package swing;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.JButton;
+
+public class TestGBL extends Start {
+
+	public TestGBL(String title) {
+		setTitle(title);
+
+		setLayout(new GridBagLayout());
+
+		GridBagConstraints worker = new GridBagConstraints();
+
+		worker.insets = new Insets(10, 10, 10, 10);
+		// Odleglosci pomiedzy komorkami
+
+		worker.gridx = 0;
+		// Kolumna
+		worker.gridy = 0;
+		// Wiersz
+		worker.ipadx = 100;
+		// increases components width by 10 pixels
+		worker.ipady = 100;
+		// increases components height by 10 pixels
+		add(new JButton("Klawisz nr 1"), worker); // constraints passed in
+	}
+}

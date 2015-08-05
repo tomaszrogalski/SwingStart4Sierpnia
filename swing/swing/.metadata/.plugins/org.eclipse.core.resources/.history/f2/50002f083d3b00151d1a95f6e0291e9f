@@ -1,0 +1,111 @@
+package swing;
+
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.TextField;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+
+public class Start extends JFrame {
+
+	public static void main(String[] args) {
+		new ListaKlientow("ListaKlientow");
+		new ListaFaktur("ListaFaktur");
+		new DodajKlienta("DodajKlienta");
+		new DodanieFaktury("DodanieFaktury");
+	}
+
+	public Start() {
+		setSize(600, 300);
+		setLocation(400, 100);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+
+	}
+	public void polaczenieDodajJDBCd(){
+		
+		final String JDBC_DRIVER = "org.postgresql.Driver";
+		final String DB_URL = "jdbc:postgresql://localhost:5433/cwiczenie2";
+		final String USER = "postgres";
+		final String PASS = "adminLWW";
+		
+		////////////////////////// Sterownik /////////////////////////
+
+		System.out.println("Sprawdzanie sterownika:");
+		try {
+			Class.forName("org.postgresql.Driver").newInstance();
+		} catch (Exception e) {
+			System.out.println("Blad przy ladowaniu sterownika bazy!");
+			System.exit(1);
+		}
+		System.out.println("Sterownik OK");
+
+		////////////////////////// Otwieranie ////////////////////////
+
+		java.sql.Connection polaczenie = null;
+		try {
+			polaczenie = DriverManager.getConnection(DB_URL, USER, PASS);
+
+		} catch (SQLException e) {
+			System.out.println("Blad przy ladowaniu sterownika bazy!");
+			System.exit(1);
+		}
+		System.out.println("Polaczenie OK");
+
+		/////////////////////////// Dzialania ////////////////////////
+
+		Statement zapytania = null;
+
+		zapytania = polaczenie.createStatement();
+
+		zapytania.execute("INSERT INTO uslugi_samochodowe.test(id,imie,nazwisko) VALUES(3,'imie','nazwisko');");
+
+		System.out.println("Dodano!");
+
+		////////////////////////// Zamykanie ////////////////////////
+
+		System.out.println("Zamykanie polaczenia");
+		try {
+			zapytania.close();
+			polaczenie.close();
+		} catch (SQLException e) {
+			System.out.println("Blad przy zamykaniu polaczenia " + e.toString());
+			System.exit(4);
+		}
+		System.out.print("Zamkniecie OK");
+
+		/////////////////////////////////////////////////////////////
+	}
+
+	public JPanel tabela2na3(String col1, String col2, String col3) {
+
+		JPanel panel = new JPanel();
+
+		panel.setLayout(new GridLayout(2, 3));
+
+		TextField tnazwa = new TextField();
+		TextField tnip = new TextField();
+		TextField tadres = new TextField();
+
+		Label lnazwa = new Label();
+		Label lnip = new Label();
+		Label ladres = new Label();
+
+		lnazwa.setText(col1);
+		lnip.setText(col2);
+		ladres.setText(col3);
+
+		panel.add(lnazwa);
+		panel.add(lnip);
+		panel.add(ladres);
+		panel.add(tnazwa);
+		panel.add(tnip);
+		panel.add(tadres);
+		return panel;
+	}
+}

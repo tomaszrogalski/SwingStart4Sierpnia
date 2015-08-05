@@ -1,0 +1,43 @@
+package swing;
+
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.TextField;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class ListaKlientow extends Start {
+
+	public ListaKlientow(String title) throws SQLException {
+		setTitle(title);
+		setLayout(new GridLayout(1,1));
+		String sql = new String();
+
+		sql = "Select * from swing.klient";
+
+		DefaultTableModel tabela = polaczenieOdbierzJDBC(sql);
+
+//	    JTable table = new JTable(buildTableModel(rs));
+//
+//	    // Closes the Connection
+//
+//	    JOptionPane.showMessageDialog(null, new JScrollPane(table));
+		// String[] kolumny = new String[] { "ID", "NIP", "KOD POCZTOWY",
+		// "MIEJSCOWOSC", "NR DOMU", "ULICA", "IMIE",
+		// "NAZWISKO" };
+		//
+		// //String[][] wartosci = new String[][];
+		//
+		// JTable table = new JTable(wartosci, kolumny);
+		//
+		this.add(new JScrollPane());
+
+		this.pack();
+		// // klawisz cofnij
+
+	}
+}

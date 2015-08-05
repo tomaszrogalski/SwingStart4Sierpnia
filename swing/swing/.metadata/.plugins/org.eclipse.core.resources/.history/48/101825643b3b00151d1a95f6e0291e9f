@@ -1,0 +1,50 @@
+package swing;
+
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.TextField;
+
+import javax.swing.JPanel;
+
+public class DodajKlienta extends Start {
+
+	public DodajKlienta(String title) {
+		setTitle(title);
+
+		setLayout(new GridLayout(2, 7));
+
+		TextField textNip = new TextField();
+		TextField textKod = new TextField();
+		TextField textMiejscowosc = new TextField();
+		TextField textNrDomu = new TextField();
+		TextField textUlica = new TextField();
+		TextField textImie = new TextField();
+		TextField textNazwisko = new TextField();
+
+		Label labelNip = new Label();
+		Label labelKod = new Label();
+		Label labelMiejscowosc = new Label();
+		Label labelNrDomu = new Label();
+		Label labelUlica = new Label();
+		Label labelImie = new Label();
+		Label labelNazwisko = new Label();
+
+		textNip.setText("textNip");
+		textKod.setText("textKod");
+		textMiejscowosc.setText("textMiejscowosc");
+		textNrDomu.setText("textNrDomu");
+		textUlica.setText("textUlica");
+		textImie.setText("textImie");
+		textNazwisko.setText("textNazwisko");
+
+
+		panel.add(lnazwa);
+		panel.add(lnip);
+		panel.add(ladres);
+		panel.add(tnazwa);
+		panel.add(tnip);
+		panel.add(tadres);
+
+	}
+
+}

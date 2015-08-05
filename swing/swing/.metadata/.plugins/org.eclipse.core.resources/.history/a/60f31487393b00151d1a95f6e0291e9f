@@ -1,0 +1,58 @@
+package model;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "faktura", schema = "swing")
+public class Faktura {
+
+	@Id
+	@SequenceGenerator(name = "faktura_nr_seq", sequenceName = "swing.faktura_nr_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "faktura_nr_seq")
+	@Column(name = "faktura_nr")
+	private Long nr;
+
+	@ManyToOne
+	@JoinColumn(name = "klient_nip")
+	private Klient klient;
+
+	@OneToMany(mappedBy = "faktura")
+	private List<Pozycja> lista_pozycji;
+
+	public Klient getKlient() {
+		return klient;
+	}
+
+	public void setKlient(Klient klient) {
+		this.klient = klient;
+	}
+
+	public List<Pozycja> getLista_pozycji() {
+		return lista_pozycji;
+	}
+
+	public void setLista_pozycji(List<Pozycja> lista_pozycji) {
+		this.lista_pozycji = lista_pozycji;
+	}
+
+	public Long getNr() {
+		return nr;
+	}
+
+	public void setNr(Long nr) {
+		this.nr = nr;
+	}
+	
+	
+}

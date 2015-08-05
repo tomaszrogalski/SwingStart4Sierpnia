@@ -1,0 +1,25 @@
+package model;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="typ_dokumentu")
+@Table(name = "dokument", schema = "schemat21lipiec")
+public class Dokument {
+
+	@Id
+	@SequenceGenerator(name = "dokument_id_seq", sequenceName = "schemat21lipiec.dokument_id_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dokument_id_seq")
+	@Column(name = "dokument_id")
+	private Long Id;
+}

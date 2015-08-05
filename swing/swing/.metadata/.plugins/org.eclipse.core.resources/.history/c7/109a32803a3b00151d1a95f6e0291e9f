@@ -1,0 +1,10 @@
+package swing;
+
+public class DodajKlienta extends Start {
+
+	public DodajKlienta(String title) {
+		setTitle(title);
+		
+	}
+
+}

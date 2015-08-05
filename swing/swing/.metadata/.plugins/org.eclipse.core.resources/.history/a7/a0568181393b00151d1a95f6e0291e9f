@@ -1,0 +1,69 @@
+package model;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "klient", schema = "swing")
+public class Klient {
+
+	@Id
+	@SequenceGenerator(name = "klient_nip_seq", sequenceName = "swing.klient_nip_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "klient_nip_seq")
+	@Column(name = "klient_nip")
+	private Long nip;
+
+	@OneToMany(mappedBy = "klient")
+	private List<Faktura> lista_faktur;
+
+	@Embedded
+	private Adres adres;
+
+	@Column(name = "imie")
+	private String imie;
+
+	@Column(name = "nazwisko")
+	private String nazwisko;
+
+	public List<Faktura> getLista_faktur() {
+		return lista_faktur;
+	}
+
+	public void setLista_faktur(List<Faktura> lista_faktur) {
+		this.lista_faktur = lista_faktur;
+	}
+
+	public Adres getAdres() {
+		return adres;
+	}
+
+	public void setAdres(Adres adres) {
+		this.adres = adres;
+	}
+
+	public String getImie() {
+		return imie;
+	}
+
+	public void setImie(String imie) {
+		this.imie = imie;
+	}
+
+	public String getNazwisko() {
+		return nazwisko;
+	}
+
+	public void setNazwisko(String nazwisko) {
+		this.nazwisko = nazwisko;
+	}
+
+}

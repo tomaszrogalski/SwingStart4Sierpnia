@@ -1,0 +1,28 @@
+package swing;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+public class TestGBL extends Start {
+
+	public TestGBL(String title) {
+		setTitle(title);
+
+		String[] kolumny = new String[] { "NAZWA", "NIP", "ADRES" };
+
+		Object[][] wartosci = new String[][] { { "jakasNAZWA", "jakisNIP", "jakisADRES" }, };
+
+		JTable table = new JTable(wartosci, kolumny);
+
+		this.add(new JScrollPane(table));
+
+		this.pack();
+	}
+	
+	
+}

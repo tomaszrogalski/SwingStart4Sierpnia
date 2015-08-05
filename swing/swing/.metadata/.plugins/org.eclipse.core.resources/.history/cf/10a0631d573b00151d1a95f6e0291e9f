@@ -1,0 +1,33 @@
+package swing;
+
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.TextField;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+public class ListaKlientow extends Start {
+
+	public ListaKlientow(String title) throws SQLException {
+		setTitle(title);
+
+//		S
+
+			// String[] kolumny = new String[] { "ID", "NIP", "KOD POCZTOWY",
+			// "MIEJSCOWOSC", "NR DOMU", "ULICA", "IMIE",
+			// "NAZWISKO" };
+			//
+			// //String[][] wartosci = new String[][];
+			//
+			// JTable table = new JTable(wartosci, kolumny);
+			//
+			// this.add(new JScrollPane(table));
+			//
+			// this.pack();
+			// // klawisz cofnij
+		}
+	}
+}

@@ -1,0 +1,28 @@
+package swing;
+
+import java.awt.BorderLayout;
+import java.sql.SQLException;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class ListaKlientow extends Start {
+
+	public ListaKlientow(String title) throws SQLException {
+		setTitle(title);
+		setLayout(new BorderLayout());
+
+		String sql = new String();
+
+		sql = "Select * from swing.klient";
+
+		DefaultTableModel model = polaczenieOdbierzJDBC(sql);
+
+		JTable table = new JTable(model);
+		this.add(new JScrollPane(table),BorderLayout.CENTER);
+
+		this.pack();
+
+	}
+}

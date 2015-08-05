@@ -1,0 +1,59 @@
+package modelq;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import modelq.Faktura;
+import modelq.Produkt;
+
+@Entity
+@Table(name = "pozycja", schema = "schemat21lipiec")
+public class Pozycja {
+
+	@Id
+	@SequenceGenerator(name = "pozycja_id_seq", sequenceName = "schemat21lipiec.pozycja_id_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pozycja_id_seq")
+	@Column(name = "pozycja_id")
+	private Long Id;
+
+	@OneToOne(mappedBy="pozycja")
+	private Produkt produkt;
+
+	@ManyToOne
+	@JoinColumn(name = "faktura_id")
+	private Faktura faktura;
+
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
+	public Produkt getProdukt() {
+		return produkt;
+	}
+
+	public void setProdukt(Produkt produkt) {
+		this.produkt = produkt;
+	}
+
+	public Faktura getFaktura() {
+		return faktura;
+	}
+
+	public void setFaktura(Faktura faktura) {
+		this.faktura = faktura;
+	}
+
+	
+}
