@@ -5,6 +5,8 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -12,9 +14,9 @@ import javax.swing.JPanel;
 
 public class DodajKlienta extends Start {
 
-	class Lewo extends JPanel {
+	class LewaStronaOkienka extends JPanel {
 
-		Lewo() {
+		LewaStronaOkienka() {
 			setLayout(new GridLayout(8, 1));
 
 			Label labelNip = new Label();
@@ -33,6 +35,9 @@ public class DodajKlienta extends Start {
 			labelImie.setText("Imie");
 			labelNazwisko.setText("Nazwisko");
 
+			JButton cofnij = new JButton();
+			cofnij.setText("Cofnij");
+
 			add(labelNip);
 			add(labelImie);
 			add(labelNazwisko);
@@ -40,12 +45,28 @@ public class DodajKlienta extends Start {
 			add(labelMiejscowosc);
 			add(labelNrDomu);
 			add(labelUlica);
+			add(cofnij);
+
+			cofnij.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					try {
+						new ListaKlientow("ListaKlientow");
+					} catch (SQLException e1) {
+
+						e1.printStackTrace();
+					}
+					dispose();
+				}
+			});
 		}
 	}
 
-	class Prawo extends JPanel {
+	class PrawaStronaOkienka extends JPanel {
 
-		Prawo() {
+		PrawaStronaOkienka() {
 			setLayout(new GridLayout(8, 1));
 
 			TextField textNip = new TextField();
@@ -56,8 +77,8 @@ public class DodajKlienta extends Start {
 			TextField textImie = new TextField();
 			TextField textNazwisko = new TextField();
 
-			JButton dodaj = new JButton();
-			dodaj.setText("Dodaj");
+			JButton dodajKlienta = new JButton();
+			dodajKlienta.setText("Dodaj");
 
 			add(textNip);
 			add(textImie);
@@ -66,24 +87,28 @@ public class DodajKlienta extends Start {
 			add(textMiejscowosc);
 			add(textNrDomu);
 			add(textUlica);
-			add(dodaj);
+			add(dodajKlienta);
 
-			dodaj.addActionListener(new ActionListener() {
+			dodajKlienta.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
-					String sql = new String();
-
-					sql = "INSERT INTO swing.Klient(nip,kod_pocztowy,miejscowosc,nr_domu,ulica,imie,nazwisko)"
-							+ "VALUES('" + textNip.getText() + "','" + textKod.getText() + "','"
-							+ textMiejscowosc.getText() + "','" + textNrDomu.getText() + "','" + textUlica.getText()
-							+ "','" + textImie.getText() + "','" + textNazwisko.getText() + "');";
 					try {
-						polaczenieDodajJDBC(sql);
+						new Polaczenia().StworzInsertKlient(textNip, textKod, textMiejscowosc, textNrDomu, textUlica,
+								textImie, textNazwisko);
 					} catch (SQLException e1) {
+
 						e1.printStackTrace();
 					}
+
+					try {
+						new ListaKlientow("ListaKlientow");
+					} catch (SQLException e1) {
+
+						e1.printStackTrace();
+					}
+					dispose();
 				}
 			});
 		}
@@ -93,8 +118,15 @@ public class DodajKlienta extends Start {
 		setTitle(title);
 
 		setLayout(new GridLayout(1, 2));
-		add(new Lewo());
-		add(new Prawo());
+		add(new LewaStronaOkienka());
+		add(new PrawaStronaOkienka());
+
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent we) {
+				System.exit(0);
+
+			}
+		});
 
 	}
 }

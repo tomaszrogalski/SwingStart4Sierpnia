@@ -1,8 +1,7 @@
 package swing;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,13 +16,10 @@ import javax.swing.table.DefaultTableModel;
 public class ListaKlientow extends Start {
 
 	class Tabela extends JPanel {
-		
+
 		Tabela() throws SQLException {
-			String sql = new String();
 
-			sql = "Select * from swing.klient";
-
-			DefaultTableModel model = polaczenieOdbierzJDBC(sql);
+			DefaultTableModel model = new Polaczenia().StworzSelectKlient();
 
 			JTable table = new JTable(model);
 			this.add(new JScrollPane(table));
@@ -31,36 +27,61 @@ public class ListaKlientow extends Start {
 	}
 
 	class Dol extends JPanel {
-		
+
 		Dol() {
-			setLayout(new FlowLayout());
+			setLayout(new GridLayout(1, 4));
 
 			TextField textId = new TextField();
 			textId.setText("ID");
-			textId.setPreferredSize(new Dimension(220, 30));
+
+			JButton cofnij = new JButton();
+			cofnij.setText("Cofnij");
 
 			JButton wybierz = new JButton();
 			wybierz.setText("Wybierz klienta");
-			wybierz.setPreferredSize(new Dimension(220, 30));
 			wybierz.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					new DodajFakture("DodajFakture");
+					DodajFakture.wybierzKlienta(textId.getText());
+					dispose();
+				}
+			});
 
+			JButton dodaj = new JButton();
+			dodaj.setText("Dodaj nowego klienta");
+			dodaj.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					new DodajKlienta("DodajKlienta");
+					dispose();
+				}
+			});
+
+			cofnij.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					new DodajFakture("DodajFakture");
+
+					dispose();
 				}
 			});
 
 			add(textId);
 			add(wybierz);
+			add(dodaj);
+			add(cofnij);
 
 		}
 	}
 
 	public ListaKlientow(String title) throws SQLException {
 		setTitle(title);
-
-		setLayout(new BorderLayout());
-
 		this.add(new Tabela(), BorderLayout.CENTER);
 
 		this.pack();
@@ -68,5 +89,4 @@ public class ListaKlientow extends Start {
 		this.add(new Dol(), BorderLayout.SOUTH);
 
 	}
-
 }
